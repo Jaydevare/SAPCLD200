@@ -1,0 +1,32 @@
+_schema-version: "3.3"
+ID: employee_salary_crud
+version: 1.0.0
+
+modules:
+
+  - name: employee_salary_crud-srv
+    type: nodejs
+    path: gen/srv
+    parameters:
+      memory: 512M
+      disk-quota: 512M
+    provides:
+      - name: srv-api
+        properties:
+          srv-url: ${default-url}
+    requires:
+      - name: employee-sal-db
+
+  - name: employee_salary_crud-db-deployer
+    type: hdb
+    path: gen/db
+    requires:
+      - name: employee-sal-db
+
+resources:
+
+  - name: employee-sal-db
+    type: com.sap.xs.hdi-container
+    parameters:
+      service: hana
+      service-plan: hdi-shared
