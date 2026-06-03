@@ -24,5 +24,12 @@
   ],
   "sapux": [
     "app/employee_salary"
-  ]
+  ],
+  "cds":{
+    "requires": {
+      "auth": {
+        "kind": "dummy"
+      }
+    }
+  }
 }
